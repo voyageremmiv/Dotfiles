@@ -10,7 +10,12 @@ call jetpack#begin()
   Jetpack 'lambdalisue/fern-renderer-nerdfont.vim'
   Jetpack 'lambdalisue/gin.vim'
   Jetpack 'lambdalisue/nerdfont.vim'
+  Jetpack 'nvim-lua/plenary.nvim'
+  Jetpack 'nvim-telescope/telescope.nvim'
+  Jetpack 'nvim-treesitter/nvim-treesitter'
+  Jetpack 'nvim-tree/nvim-web-devicons'
   Jetpack 'simeji/winresizer'
+  Jetpack 'thinca/vim-qfreplace'
   Jetpack 'tpope/vim-commentary'
   Jetpack 'tpope/vim-fugitive'
   Jetpack 'vim-airline/vim-airline'
@@ -53,6 +58,14 @@ set wildignorecase
 set noswapfile
 set noshowmode
 
+nnoremap <leader>fq :bd<CR>
+nnoremap <leader>fr :Qfreplace<CR>
+
+nnoremap <leader>fz <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 nnoremap <leader>ff :Fern . -reveal=%<CR><CR>
 nnoremap <leader>fd :Fern . -reveal=% -drawer -toggle<CR><CR>
 
@@ -89,3 +102,20 @@ let g:gitgutter_sign_modified = '>'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = '<'
+
+lua <<EOF
+  require'nvim-treesitter.configs'.setup {
+    highlight = { enable = true, },
+    indent = { enable = true, }
+  }
+
+  require'telescope'.setup {
+    defaults = {
+      mappings = {
+        i = {
+          ["<C-a>"] = require('telescope.actions').send_to_qflist + require('telescope.actions').open_qflist
+        }
+      }
+    }
+  }
+EOF
