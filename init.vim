@@ -116,6 +116,12 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = '<'
 
+tnoremap <Esc> <C-\><C-n>
+command! -nargs=* T split | wincmd j | resize 10 | terminal <args>
+autocmd TermOpen * :startinsert
+autocmd TermOpen * setlocal norelativenumber
+autocmd TermOpen * setlocal nonumber
+
 runtime macros/matchit.vim
 
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
