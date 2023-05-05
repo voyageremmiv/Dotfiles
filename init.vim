@@ -15,6 +15,11 @@ call jetpack#begin()
   Jetpack 'nvim-treesitter/nvim-treesitter'
   Jetpack 'nvim-tree/nvim-web-devicons'
   Jetpack 'simeji/winresizer'
+  Jetpack 'Shougo/ddc.vim'
+  Jetpack 'Shougo/ddc-filter-matcher_head'
+  Jetpack 'Shougo/ddc-filter-sorter_rank'
+  Jetpack 'Shougo/ddc-source-around'
+  Jetpack 'Shougo/ddc-ui-native'
   Jetpack 'thinca/vim-qfreplace'
   Jetpack 'tpope/vim-commentary'
   Jetpack 'tpope/vim-fugitive'
@@ -115,6 +120,25 @@ let g:gitgutter_sign_modified = '>'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '^'
 let g:gitgutter_sign_modified_removed = '<'
+
+call ddc#custom#patch_global('ui', 'native')
+call ddc#custom#patch_global('sources', ['around'])
+call ddc#custom#patch_global('sourceOptions', #{
+  \ _: #{ matchers: ['matcher_head'], sorters: ['sorter_rank']},
+  \ })
+call ddc#custom#patch_global('sourceOptions', #{
+  \   around: #{ mark: 'A' },
+  \ })
+call ddc#custom#patch_global('sourceParams', #{
+  \   around: #{ maxSize: 100 },
+  \ })
+call ddc#enable()
+
+inoremap <silent><expr> <TAB>
+\ pumvisible() ? '<C-n>' :
+\ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+\ '<TAB>' : ddc#map#manual_complete()
+inoremap <expr><S-TAB>  pumvisible() ? '<C-p>' : '<C-h>'
 
 tnoremap <Esc> <C-\><C-n>
 command! -nargs=* T split | wincmd j | resize 10 | terminal <args>
