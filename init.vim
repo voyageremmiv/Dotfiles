@@ -58,6 +58,19 @@ set wildignorecase
 set noswapfile
 set noshowmode
 
+cnoremap <C-A> <HOME>
+
+nnoremap <silent> q: <NOP>
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
+nnoremap <silent> <C-w>- :sp<CR>
+nnoremap <silent> <C-w>\ :vs<CR>
+
 nnoremap <leader>fq :bd<CR>
 nnoremap <leader>fr :Qfreplace<CR>
 
