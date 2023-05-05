@@ -1,16 +1,20 @@
 packadd vim-jetpack
 call jetpack#begin()
   Jetpack 'tani/vim-jetpack', { 'opt': 1 }
+  Jetpack 'airblade/vim-gitgutter'
   Jetpack 'cohama/lexima.vim'
   Jetpack 'kaicataldo/material.vim'
   Jetpack 'lambdalisue/fern.vim'
   Jetpack 'lambdalisue/fern-git-status.vim'
   Jetpack 'lambdalisue/fern-hijack.vim'
   Jetpack 'lambdalisue/fern-renderer-nerdfont.vim'
+  Jetpack 'lambdalisue/gin.vim'
   Jetpack 'lambdalisue/nerdfont.vim'
   Jetpack 'simeji/winresizer'
   Jetpack 'tpope/vim-commentary'
+  Jetpack 'tpope/vim-fugitive'
   Jetpack 'vim-airline/vim-airline'
+  Jetpack 'vim-denops/denops.vim'
   Jetpack 'yuki-yano/fern-preview.vim'
 call jetpack#end()
 
@@ -67,3 +71,21 @@ augroup END
 
 let g:fern#renderer = "nerdfont"
 let g:fern#renderer#nerdfont#indent_markers = 1
+
+nnoremap <leader>gb :GinBranch<CR>
+nnoremap <leader>gc :GinChaperon<CR>
+nnoremap <leader>gd :Gdiffsplit<CR>
+nnoremap <leader>gl :GinLog ++opener=vsplit<CR>
+nnoremap <leader>gp :GinPatch ++opener=tabnew %<CR>
+nnoremap <leader>gs :GinStatus<CR>
+nnoremap <leader>gw :Git blame<CR>
+
+nnoremap <leader>dh :diffget //2 <Bar> diffup<CR>
+nnoremap <leader>dl :diffget //3 <Bar> diffup<CR>
+
+set updatetime=100
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '>'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '^'
+let g:gitgutter_sign_modified_removed = '<'
