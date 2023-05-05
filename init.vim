@@ -2,9 +2,19 @@ packadd vim-jetpack
 call jetpack#begin()
   Jetpack 'tani/vim-jetpack', { 'opt': 1 }
   Jetpack 'cohama/lexima.vim'
+  Jetpack 'kaicataldo/material.vim'
   Jetpack 'simeji/winresizer'
   Jetpack 'tpope/vim-commentary'
+  Jetpack 'vim-airline/vim-airline'
 call jetpack#end()
+
+let g:material_theme_style = 'palenight'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_powerline_fonts = 1
+
+colorscheme material
+syntax enable
 
 set number
 set title
