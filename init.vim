@@ -1,3 +1,11 @@
+packadd vim-jetpack
+call jetpack#begin()
+  Jetpack 'tani/vim-jetpack', { 'opt': 1 }
+  Jetpack 'cohama/lexima.vim'
+  Jetpack 'simeji/winresizer'
+  Jetpack 'tpope/vim-commentary'
+call jetpack#end()
+
 set number
 set title
 set showmatch
